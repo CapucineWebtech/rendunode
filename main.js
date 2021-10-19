@@ -29,7 +29,7 @@ app.use( bodyParser.urlencoded( { extended: true } ) );
 
 const connect = async () =>
 {
-   try
+  try
   {
   const connection = await createConnection({
     type: "mysql",
@@ -53,20 +53,17 @@ app.get( '/formulaire', ( req, res ) =>
 })
 
 app.post('/formulaire', (req, res, next) => {
-  console.log( "hey : ", req.files.photo );
   req.files.photo.mv( `./photos/${req.files.photo.name}`, ( err ) =>
   {
-      if (err)
-          return res.status(500).send(err);
-
-      console.log('File uploaded!');
+    if (err)
+        return res.status(500).send(err);
   })
 
-    const titre = req.body.titre
-    const description = req.body.description
+  const titre = req.body.titre
+  const description = req.body.description
 
-    return res.render('formulaire',
-        {"titre" : titre, "description" : description})
+  return res.render('formulaire',
+      {"titre" : titre, "description" : description})
 })
 
 app.listen(port, () => {
