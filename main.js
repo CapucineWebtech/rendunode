@@ -16,6 +16,9 @@ const mustacheExpress = require('mustache-express');
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set( 'views', __dirname + '/views' );
+const path = require( 'path' )
+app.use(express.static(path.join(__dirname, 'projet_typ_nod_git')))
+const {createConnection, Connection, getConnection}  =  require("typeorm");
 
 const fileUpload = require('express-fileupload')
 app.use(fileUpload({
@@ -45,11 +48,17 @@ const connect = async () =>
     console.log(e)
   }
 }
-//connect()
+connect()
 
 app.get( '/formulaire', ( req, res ) =>
 {
-  return res.render('formulaire')
+  let connection = getConnection()
+  connection.query('SELECT titre, description, photo FROM post', function (error, results, fields) {
+    if (error) throw error;
+      console.log('The solution is: ', results);
+
+    return res.render('formulaire', { lespostes: results });
+  })
 })
 
 app.post('/formulaire', (req, res, next) => {
@@ -61,9 +70,21 @@ app.post('/formulaire', (req, res, next) => {
 
   const titre = req.body.titre
   const description = req.body.description
+  const laphoto = req.files.photo.name
 
-  return res.render('formulaire',
-      {"titre" : titre, "description" : description})
+  let connection = getConnection()
+
+  connection.query(`INSERT INTO post (titre, description, photo) VALUES ("${titre}", "${description}", "${laphoto}") `, function (error, resultsPost, fields) {
+    if (error) throw error;
+      console.log('The solution is: ', resultsPost);
+  })
+
+  connection.query('SELECT titre, description, photo FROM post', function (error, results, fields) {
+    if (error) throw error;
+      console.log('The solution is: ', results);
+
+    return res.render('formulaire', { lespostes: results });
+  })
 })
 
 app.listen(port, () => {

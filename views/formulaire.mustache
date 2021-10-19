@@ -9,7 +9,10 @@
         <input type="file" name="photo"/>
         <button type="submit">Poster</button>
     </form>
-    <p>{{titre}}</p>
-    <p>{{description}}</p>
+    {{#lespostes}}
+        <p>{{titre}}</p>
+        <p>{{description}}</p>
+        <img src="./photos/{{photo}}" />
+    {{/lespostes}}
 </body>
 </html>
