@@ -1,0 +1,14 @@
+<html>
+<body>
+    <b>Bonjour voici le formulaire pour ajouter des photos de vacances</b>
+    <form action="/formulaire" method="POST">
+        <p>Titre: <input type="text" name="titre" required/></p>
+        <p>Description: </p>
+        <textarea name="description" required></textarea>
+        <p>Photo: <input type="file" name="photo"/></p>
+        <button type="submit">Poster</button>
+    </form>
+    <p>{{titre}}</p>
+    <p>{{description}}</p>
+</body>
+</html>
