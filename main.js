@@ -63,7 +63,7 @@ app.get( '/formulaire', ( req, res ) =>
 })
 
 app.post('/formulaire', (req, res, next) => {
-  req.files.photo.mv( `./photos/${req.files.photo.name}`, ( err ) =>
+  req.files.photo.mv( `./public/photos/${req.files.photo.name}`, ( err ) =>
   {
     if (err)
         return res.status(500).send(err);
@@ -80,6 +80,8 @@ app.post('/formulaire', (req, res, next) => {
       console.log('The solution is: ', resultsPost);
   })
 
+  connection = getConnection()
+  
   connection.query('SELECT titre, description, photo FROM post', function (error, results, fields) {
     if (error) throw error;
       console.log('The solution is: ', results);
