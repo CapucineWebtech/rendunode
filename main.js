@@ -16,8 +16,9 @@ const mustacheExpress = require('mustache-express');
 app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set( 'views', __dirname + '/views' );
+app.use('/', express.static('public'));
+
 const path = require( 'path' )
-app.use(express.static(path.join(__dirname, 'projet_typ_nod_git')))
 const {createConnection, Connection, getConnection}  =  require("typeorm");
 
 const fileUpload = require('express-fileupload')
