@@ -2,7 +2,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <title>Formulaire photo de vacances</title>
@@ -10,12 +9,12 @@
 <body>
     <h2 class="m-3 text-center">Bonjour voici le formulaire pour ajouter des photos de vacances</h2>
     <br>
-    <form action="/formulaire" method="POST" enctype="multipart/form-data"  class="text-center">
+    <form action="/formulaire" method="POST" enctype="multipart/form-data" class="text-center">
         <input type="text" name="titre" placeholder="Titre" style="width: 80%; margin-bottom: 10px;" required/>
         <br>
         <textarea name="description" placeholder="Description" style="width: 80%; height: 120px;" required></textarea>
         <div class="my-3 mx-auto" style="width: 80%">
-            <label for="formFile" class="form-label">Choisissez votre photo</label>
+            <label for="formFile" class="form-label">Choisissez votre photo en .jpg svp</label> <!--Le png fontionne aussi-->
             <input class="form-control" type="file" id="formFile" name="photo">
         </div>
         <button type="submit" class="btn btn-outline-primary">Poster</button>
